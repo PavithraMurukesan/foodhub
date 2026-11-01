@@ -84,6 +84,15 @@ function updateCartCount() {
     });
 }
 
+function updateWishlistCount() {
+    let wishlist =
+        JSON.parse(localStorage.getItem("foodieWishlist")) || [];
+
+    document.querySelectorAll("#wishlistCount").forEach(element => {
+        element.textContent = wishlist.length;
+    });
+}
+
 function addToCart(id) {
     let item = cart.find(food => food.id === id);
 
@@ -97,6 +106,7 @@ function addToCart(id) {
     }
 
     localStorage.setItem("foodieCart", JSON.stringify(cart));
+    updateWishlistCount();
 
     updateCartCount();
 
@@ -314,6 +324,7 @@ function removeFromCart(id) {
     cart = cart.filter(food => food.id !== id);
 
     localStorage.setItem("foodieCart", JSON.stringify(cart));
+    updateWishlistCount();
 
     renderCart();
 }

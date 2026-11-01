@@ -335,16 +335,13 @@ if (checkoutButton) {
 }
 
 renderCart();
+
 // FOODIEHUB CHECKOUT
-// DATABASE ORDER SAVE
-// =========================
 
 const checkoutForm = document.getElementById("checkoutForm");
 
 if (checkoutForm) {
-
     checkoutForm.addEventListener("submit", async function(event) {
-
         event.preventDefault();
 
         let currentCart = JSON.parse(
@@ -357,14 +354,9 @@ if (checkoutForm) {
             return;
         }
 
-        let customerName =
-            document.getElementById("customerName").value.trim();
-
-        let mobile =
-            document.getElementById("mobile").value.trim();
-
-        let address =
-            document.getElementById("address").value.trim();
+        let customerName = document.getElementById("customerName").value.trim();
+        let mobile = document.getElementById("mobile").value.trim();
+        let address = document.getElementById("address").value.trim();
 
         let paymentElement = document.querySelector(
             'input[name="payment"]:checked'
@@ -387,19 +379,14 @@ if (checkoutForm) {
 
         let payment = paymentElement.value;
 
-        // Calculate subtotal
         let subtotal = 0;
 
         currentCart.forEach(function(item) {
-
-            let food = foods.find(function(f) {
-                return f.id === Number(item.id);
-            });
+            let food = foods.find(f => f.id === Number(item.id));
 
             if (food) {
                 subtotal += food.price * item.quantity;
             }
-
         });
 
         if (subtotal === 0) {
@@ -407,15 +394,12 @@ if (checkoutForm) {
             return;
         }
 
-        // Coupon calculation
         let couponCode = localStorage.getItem("foodieCoupon");
-
         let discountPercent = Number(
             localStorage.getItem("foodieCouponDiscount")
         ) || 0;
 
         let enteredCoupon = document.getElementById("couponCode");
-
         let discountAmount = 0;
 
         if (
@@ -424,22 +408,15 @@ if (checkoutForm) {
             enteredCoupon &&
             enteredCoupon.value.trim().toUpperCase() === "FOODIE10"
         ) {
-            discountAmount = Math.round(
-                subtotal * discountPercent / 100
-            );
+            discountAmount = Math.round(subtotal * discountPercent / 100);
         } else {
             couponCode = "";
-            discountAmount = 0;
         }
 
         let deliveryFee = 40;
+        let grandTotal = subtotal - discountAmount + deliveryFee;
 
-        let grandTotal =
-            subtotal - discountAmount + deliveryFee;
-
-        // Show loading message
-        const placeOrderBtn =
-            document.getElementById("placeOrderBtn");
+        const placeOrderBtn = document.getElementById("placeOrderBtn");
 
         if (placeOrderBtn) {
             placeOrderBtn.disabled = true;
@@ -447,66 +424,14 @@ if (checkoutForm) {
         }
 
         try {
+            // GitHub Pages demo: save order in browser only.
+            // No PHP or database connection is used here.
 
-            // Send order to PHP database
-            const response = await fetch("../save_order.php", {
-
-                method: "POST",
-
-                headers: {
-                    "Content-Type": "application/json"
-                },
-
-                body: JSON.stringify({
-
-                    name: customerName,
-
-                    phone: mobile,
-
-                    address: address,
-
-                    payment_method: payment,
-
-                    items: currentCart.map(function(item) {
-                        return {
-                            id: Number(item.id),
-                            quantity: Number(item.quantity)
-                        };
-                    })
-
-                })
-
-            });
-
-            const responseText = await response.text();
-
-            let result;
-
-            try {
-                result = JSON.parse(responseText);
-            } catch (error) {
-                throw new Error(
-                    "PHP response JSON format-la illa. save_order.php check pannu."
-                );
-            }
-
-            if (!response.ok || !result.success) {
-                throw new Error(
-                    result.message || "Database-la order save aagala."
-                );
-            }
-
-            // Save order locally after database success
             let order = {
-
-                orderId: result.order_id || result.orderId || ("FH" + Date.now()),
-
+                orderId: "FH" + Date.now(),
                 customerName: customerName,
-
                 mobile: mobile,
-
                 address: address,
-
                 paymentMethod: payment,
 
                 paymentStatus:
@@ -515,10 +440,9 @@ if (checkoutForm) {
                     : "Not paid - Demo only",
 
                 items: currentCart.map(function(item) {
-
-                    let food = foods.find(function(f) {
-                        return f.id === Number(item.id);
-                    });
+                    let food = foods.find(
+                        f => f.id === Number(item.id)
+                    );
 
                     return {
                         id: item.id,
@@ -526,40 +450,26 @@ if (checkoutForm) {
                         price: food ? food.price : 0,
                         quantity: item.quantity
                     };
-
                 }),
 
                 subtotal: subtotal,
-
                 couponCode: couponCode || "No Coupon",
-
                 discountAmount: discountAmount,
-
                 deliveryFee: deliveryFee,
-
                 grandTotal: grandTotal,
-
                 trackingStartTime: Date.now(),
-
                 orderDate: new Date().toLocaleString()
-
             };
 
-            localStorage.setItem(
-                "foodieOrder",
-                JSON.stringify(order)
-            );
+            localStorage.setItem("foodieOrder", JSON.stringify(order));
 
-            // Clear cart only after database success
             localStorage.removeItem("foodieCart");
-
             localStorage.removeItem("foodieCoupon");
-
             localStorage.removeItem("foodieCouponDiscount");
 
             alert(
                 "Thank you " + customerName +
-                "!\nYour order saved successfully in database." +
+                "!\nYour demo order was placed successfully." +
                 "\nOrder ID: " + order.orderId +
                 "\nFinal Total: ₹" + grandTotal
             );
@@ -567,22 +477,14 @@ if (checkoutForm) {
             window.location.href = "success.html";
 
         } catch (error) {
-
-            alert(
-                "ORDER SAVE FAILED!\n\n" + error.message
-            );
-
-            console.error("Order Error:", error);
+            alert("Order failed: " + error.message);
 
             if (placeOrderBtn) {
                 placeOrderBtn.disabled = false;
                 placeOrderBtn.textContent = "Place Order";
             }
-
         }
-
     });
-
 }
 // ORDER SUCCESS PAGE
 

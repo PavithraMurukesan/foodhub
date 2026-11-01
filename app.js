@@ -1019,7 +1019,7 @@ function renderWishlistInCart() {
     wishlistContainer.innerHTML = "";
 
     wishlist.forEach(foodId => {
-        const food = foods.find(item => item.id === foodId);
+        const food = foods.find(item => String(item.id) === String(foodId));
 
         if (!food) return;
 

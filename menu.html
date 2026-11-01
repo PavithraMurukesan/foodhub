@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Menu - FoodieHub</title>
+    <link rel="stylesheet" href="../CSS/style.css">
+</head>
+
+<body>
+
+<header class="navbar">
+    <h2 class="logo">🍔 FoodieHub</h2>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="cart.html" class="cart-link">
+            🛒 Cart (<span id="cartCount">0</span>)
+        </a>
+        <a href="myorder.html">My Orders</a>
+        <a href="wishlist.html">Wishlist</a>
+    </nav>
+</header>
+
+<section class="menu-heading">
+    <h1>Explore Our Menu 🍽️</h1>
+    <p>Choose your favourite food!</p>
+
+    <input
+        type="text"
+        id="menuSearch"
+        placeholder="Search food..."
+    >
+
+    <div class="category-buttons">
+        <button class="active" data-category="All">All</button>
+        <button data-category="Pizza">Pizza</button>
+        <button data-category="Burger">Burger</button>
+        <button data-category="Noodles">Noodles</button>
+        <button data-category="Drinks">Drinks</button>
+        <button data-category="Dessert">Dessert</button>
+    </div>
+</section>
+
+<section class="menu-section">
+    <div id="menuContainer" class="food-container"></div>
+</section>
+
+<footer>
+    <p>© 2026 FoodieHub. All Rights Reserved.</p>
+</footer>
+
+<script src="../JS/app.js"></script>
+
+</body>
+</html>

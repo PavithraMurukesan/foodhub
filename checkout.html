@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Checkout - FoodieHub</title>
+
+    <link rel="stylesheet" href="../CSS/style.css">
+</head>
+
+<body>
+
+<header class="navbar">
+    <h2 class="logo">🍔 FoodieHub</h2>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="cart.html" class="cart-link">
+            🛒 Cart (<span id="cartCount">0</span>)
+        </a>
+        <a href="myorder.html">My Orders</a>
+    </nav>
+</header>
+
+<section class="checkout-heading">
+    <h1>Checkout 🛒</h1>
+    <p>Complete your order with FoodieHub</p>
+</section>
+
+<section class="checkout-container">
+
+    <form id="checkoutForm">
+
+        <h2>Delivery Details</h2>
+
+        <label for="customerName">Customer Name</label>
+        <input
+            type="text"
+            id="customerName"
+            placeholder="Enter your name"
+            required
+        >
+
+        <label for="mobile">Mobile Number</label>
+        <input
+            type="tel"
+            id="mobile"
+            placeholder="Enter 10 digit mobile number"
+            pattern="[6-9][0-9]{9}"
+            maxlength="10"
+            required
+        >
+
+        <label for="address">Delivery Address</label>
+        <textarea
+            id="address"
+            placeholder="Enter your full delivery address"
+            required
+        ></textarea>
+        <!-- COUPON SECTION -->
+        <h2>Apply Coupon 🎁</h2>
+
+        <div class="coupon-box">
+        <input type="text" id="couponCode" placeholder="Enter coupon code">
+        <button type="button" id="applyCoupon">Apply Coupon</button>
+        <p id="couponMessage"></p>
+        </div>
+
+        <h2>Payment Method</h2>
+
+        <div class="payment-options">
+
+            <label class="payment-option">
+                <input
+                    type="radio"
+                    name="payment"
+                    value="Cash on Delivery"
+                    checked
+                >
+                <span>💵 Cash on Delivery</span>
+            </label>
+
+            <label class="payment-option">
+                <input
+                    type="radio"
+                    name="payment"
+                    value="UPI"
+                >
+                <span>📱 UPI (Google Pay / PhonePe / Paytm)</span>
+            </label>
+
+            <label class="payment-option">
+                <input
+                    type="radio"
+                    name="payment"
+                    value="Debit Card"
+                >
+                <span>💳 Debit Card</span>
+            </label>
+
+            <label class="payment-option">
+                <input
+                    type="radio"
+                    name="payment"
+                    value="Credit Card"
+                >
+                <span>💳 Credit Card</span>
+            </label>
+
+            <label class="payment-option">
+                <input
+                    type="radio"
+                    name="payment"
+                    value="Net Banking"
+                >
+                <span>🏦 Net Banking</span>
+            </label>
+
+        </div>
+
+        <p class="payment-note">
+            Online payment options are for demonstration.
+            Actual payment requires a secure payment gateway.
+        </p>
+
+        <button type="submit" id="placeOrderBtn">
+            Place Order
+        </button>
+
+        <a href="cart.html" class="back-cart">
+            ← Back to Cart
+        </a>
+
+    </form>
+
+</section>
+
+<footer>
+    <p>© 2026 FoodieHub. All Rights Reserved.</p>
+</footer>
+<script>alert("CHECKOUT PAGE SCRIPT")</script>
+<script src="../JS/app.js"></script>
+
+</body>
+</html>

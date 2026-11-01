@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FoodieHub - Food Ordering</title>
+
+    <link rel="stylesheet" href="../CSS/style.css">
+</head>
+
+<body>
+
+<header class="navbar">
+    <h2 class="logo">🍔 FoodieHub</h2>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="cart.html" class="cart-link">
+            🛒 Cart (<span id="cartCount">0</span>)
+        </a>
+        <a href="myorder.html">My Orders</a>
+    </nav>
+</header>
+
+<section class="hero-section">
+    <div class="hero-content">
+        <h1>Delicious Food, Delivered Fresh!</h1>
+
+        <p>
+            Order your favourite food online.
+            Fresh, tasty and delivered to your doorstep.
+        </p>
+
+        <a href="menu.html" class="hero-btn">
+            Explore Menu
+        </a>
+    </div>
+
+    <div class="hero-image">
+        <img src="../images/food.jpeg" alt="Delicious Burger">
+    </div>
+</section>
+
+<section class="popular">
+    <h2>Popular Foods</h2>
+
+    <input
+        type="text"
+        id="foodSearch"
+        placeholder="Search your favourite food..."
+    >
+
+    <div id="foodContainer" class="food-container"></div>
+</section>
+
+<!-- Why Choose Us Section -->
+<section class="why-choose">
+    <h2>Why Choose FoodieHub?</h2>
+
+    <div class="choose-container">
+
+        <div class="choose-card">
+            <h3>🍔 Quality Food</h3>
+            <p>Fresh and delicious food for everyone.</p>
+        </div>
+
+        <div class="choose-card">
+            <h3>🚀 Fast Delivery</h3>
+            <p>Quick and convenient food ordering.</p>
+        </div>
+
+        <div class="choose-card">
+            <h3>💰 Affordable Price</h3>
+            <p>Enjoy tasty meals at affordable prices.</p>
+        </div>
+
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 FoodieHub</p>
+</footer>
+
+<script src="../JS/app.js"></script>
+
+</body>
+</html>

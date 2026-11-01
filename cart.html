@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Cart - FoodieHub</title>
+    <link rel="stylesheet" href="../CSS/style.css">
+</head>
+
+<body>
+
+<header class="navbar">
+    <h2 class="logo">🍔 FoodieHub</h2>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="cart.html" class="cart-link">
+            🛒 Cart (<span id="cartCount">0</span>)
+        </a>
+        <a href="myorder.html">My Orders</a>
+    </nav>
+</header>
+
+<section class="cart-heading">
+    <h1>My Shopping Cart 🛒</h1>
+    <p>Review your favourite food items</p>
+</section>
+
+<section class="cart-section">
+
+    <div id="cartItems"></div>
+
+    <div class="cart-summary">
+        <h2>Order Summary</h2>
+
+        <p>Subtotal:
+            <span id="subtotal">₹0</span>
+        </p>
+
+        <p>Delivery Fee:
+            <span id="delivery">₹0</span>
+        </p>
+
+        <hr>
+
+        <h3>Grand Total:
+            <span id="grandTotal">₹0</span>
+        </h3>
+
+        <button id="checkoutBtn">
+            Proceed to Checkout
+        </button>
+
+        <br><br>
+
+        <a href="menu.html">← Continue Shopping</a>
+    </div>
+
+</section>
+
+<footer>
+    <p>© 2026 FoodieHub. All Rights Reserved.</p>
+</footer>
+
+<script src="../JS/app.js"></script>
+
+</body>
+</html>

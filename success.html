@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Order Success - FoodieHub</title>
+
+    <link rel="stylesheet" href="../CSS/style.css">
+</head>
+
+<body>
+
+<header class="navbar">
+    <h2 class="logo">🍔 FoodieHub</h2>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="cart.html" class="cart-link">
+            🛒 Cart (<span id="cartCount">0</span>)
+        </a>
+        <a href="myorder.html">My Orders</a>
+    </nav>
+</header>
+
+<section class="success-container">
+
+    <div class="success-card">
+
+        <div class="success-icon">✓</div>
+
+        <h1>Order Placed Successfully!</h1>
+
+        <p>Thank you for choosing FoodieHub.</p>
+
+        <div class="order-details">
+
+            <h2>Order Details</h2>
+
+            <p>Order ID:
+                <span id="orderId"></span>
+            </p>
+
+            <p>Customer Name:
+                <span id="successName"></span>
+            </p>
+
+            <p>Payment Method:
+                <span id="successPayment"></span>
+            </p>
+
+            <p>Total Amount:
+                <span id="successTotal"></span>
+            </p>
+
+            <p>Order Date:
+                <span id="successDate"></span>
+            </p>
+
+        </div>
+
+        <p class="success-message">
+            Your order has been received!
+        </p>
+
+        <a href="menu.html" class="shop-again">
+            Continue Shopping
+        </a>
+
+    </div>
+
+</section>
+
+<!-- FOOD RATING & REVIEW -->
+<section class="review-section">
+    <h2>Rate Your Food ⭐</h2>
+    <p>Share your experience with us!</p>
+
+    <form id="reviewForm">
+        <label for="reviewName">Your Name</label>
+        <input type="text" id="reviewName"
+               placeholder="Enter your name" required>
+
+        <label for="foodRating">Your Rating</label>
+        <select id="foodRating" required>
+            <option value="">Select Rating</option>
+            <option value="5">⭐⭐⭐⭐⭐ Excellent</option>
+            <option value="4">⭐⭐⭐⭐ Very Good</option>
+            <option value="3">⭐⭐⭐ Good</option>
+            <option value="2">⭐⭐ Fair</option>
+            <option value="1">⭐ Poor</option>
+        </select>
+
+        <label for="reviewText">Your Review</label>
+        <textarea id="reviewText"
+                  placeholder="Write your review..."
+                  required></textarea>
+
+        <button type="submit">Submit Review</button>
+    </form>
+
+    <div id="reviewsList"></div>
+</section>
+
+<footer>
+    <p>© 2026 FoodieHub. All Rights Reserved.</p>
+</footer>
+
+<script src="../JS/app.js"></script>
+
+</body>
+</html>

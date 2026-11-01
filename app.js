@@ -868,7 +868,7 @@ function addToWishlist(foodId) {
         "foodieWishlist",
         JSON.stringify(wishlist)
     );
-
+     renderWishlistInCart();
     alert("Food added to Wishlist successfully! ❤️");
 }
 
@@ -1002,3 +1002,56 @@ if (reviewForm) {
 
 displayReviews();
 
+function renderWishlistInCart() {
+    const wishlistContainer = document.getElementById("wishlistItems");
+
+    if (!wishlistContainer) return;
+
+    let wishlist =
+        JSON.parse(localStorage.getItem("foodieWishlist")) || [];
+
+    if (wishlist.length === 0) {
+        wishlistContainer.innerHTML =
+            "<p>Wishlist empty ah irukku.</p>";
+        return;
+    }
+
+    wishlistContainer.innerHTML = "";
+
+    wishlist.forEach(foodId => {
+        const food = foods.find(item => item.id === foodId);
+
+        if (!food) return;
+
+        wishlistContainer.innerHTML += `
+            <div class="wishlist-item">
+                <img src="${food.image}" alt="${food.name}" width="100">
+
+                <h3>${food.name}</h3>
+                <p>₹${food.price}</p>
+
+                <button onclick="addToCart(${food.id})">
+                    Add to Cart
+                </button>
+
+                <button onclick="removeFromCartWishlist(${food.id})">
+                    Remove
+                </button>
+            </div>
+        `;
+    });
+}
+
+function removeFromCartWishlist(foodId) {
+    let wishlist =
+        JSON.parse(localStorage.getItem("foodieWishlist")) || [];
+
+    wishlist = wishlist.filter(id => id !== foodId);
+
+    localStorage.setItem(
+        "foodieWishlist",
+        JSON.stringify(wishlist)
+    );
+
+    renderWishlistInCart();
+}
